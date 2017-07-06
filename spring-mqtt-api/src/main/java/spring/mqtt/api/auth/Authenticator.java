@@ -1,6 +1,5 @@
 package spring.mqtt.api.auth;
 
-import org.apache.commons.configuration.AbstractConfiguration;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface Authenticator {
      *
      * @param config Authenticator Configuration
      */
-    void init(AbstractConfiguration config);
+    void init();
 
     /**
      * Destroy the authenticator
