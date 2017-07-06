@@ -1,4 +1,4 @@
-package spring.mqtt.storage;
+package spring.mqtt.api.storage;
 
 
 import spring.mqtt.api.message.Message;

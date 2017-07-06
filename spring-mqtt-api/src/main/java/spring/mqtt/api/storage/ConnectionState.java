@@ -1,4 +1,4 @@
-package spring.mqtt.storage;
+package spring.mqtt.api.storage;
 
 /**
  * MQTT Client Connection State
