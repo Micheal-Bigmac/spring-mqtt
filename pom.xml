@@ -43,6 +43,7 @@
         <module>spring-mqtt-api</module>
         <module>spring-mqtt-nats</module>
         <module>spring-mqtt-http</module>
+        <module>spring-mqtt-config</module>
     </modules>
 	
 	<repositories>
