@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>spring.mqtt.service</groupId>
-	<artifactId>mqtt</artifactId>
+	<artifactId>spring-mqtt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -37,12 +37,28 @@
 
 	<modules>
         <module>spring-mqtt-broker</module>
-        <module>spring-mqtt-config</module>
+        <module>spring-mqtt-protocol</module>
         <module>spring-mqtt-redis</module>
         <module>spring-mqtt-mongodb</module>
         <module>spring-mqtt-api</module>
         <module>spring-mqtt-nats</module>
         <module>spring-mqtt-http</module>
     </modules>
+	
+	<repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
