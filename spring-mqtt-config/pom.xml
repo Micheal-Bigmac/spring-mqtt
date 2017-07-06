@@ -10,6 +10,11 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>spring.mqtt.broker</groupId>
+			<artifactId>spring-mqtt-broker</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<parent>
 		<groupId>spring.mqtt.service</groupId>
