@@ -43,18 +43,17 @@ public class ApplicationService {
     @Autowired
     private ChildChannelHandler childChannelHandler;
 
-    @Autowired
-    private NettyConfig nettyConfig;
 
     public ApplicationService (){
         this(TASK_GROUP << 1);
     }
     public ApplicationService (final int workers){
+
         this.workers = workers;
     }
 
     @PostConstruct
-    public void runServie(){
+    public void runServie(int port,String host,boolean sslEnable,int sslPort,String sslCertPath,String sslkeyPath,String sslKeyPassword){
         LOGGER.info("启动netty服务器");
         ThreadFactory boss = new DefaultThreadFactory("netty.accpet.boss");
         ThreadFactory work = new DefaultThreadFactory("netty.accpet.work");
@@ -76,7 +75,7 @@ public class ApplicationService {
                     .handler(new LoggingHandler(LogLevel.INFO)) //启动日志
                     .childHandler(childChannelHandler);
             //绑定端口，同步等待成功
-            ChannelFuture f = b.bind(port).sync();
+            ChannelFuture f = b.bind(host,port).sync();
             LOGGER.info("netty服务器启动成功");
             //等待服务端监听端口关闭
             f.channel().closeFuture().sync();
