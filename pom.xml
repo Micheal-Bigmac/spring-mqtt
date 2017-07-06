@@ -34,7 +34,12 @@
             </dependency>
         </dependencies>
 	</dependencyManagement>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 	<modules>
         <module>spring-mqtt-broker</module>
         <module>spring-mqtt-protocol</module>
