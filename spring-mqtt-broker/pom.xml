@@ -3,11 +3,22 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring.mqtt.broker</artifactId>
+	<groupId>spring.mqtt.broker</groupId>
+	<artifactId>spring-mqtt-broker</artifactId>
 	<parent>
 		<groupId>spring.mqtt.service</groupId>
 		<artifactId>spring-mqtt</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
+	<dependencies>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>spring.mqtt.config</groupId>
+			<artifactId>spring-mqtt-config</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
