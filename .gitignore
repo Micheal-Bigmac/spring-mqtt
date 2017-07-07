@@ -12,3 +12,5 @@ gen
 /.idea
 /.project
 /spring-mqtt-mongodb/.classpath
+/spring-mqtt-config
+/spring-mqtt-config

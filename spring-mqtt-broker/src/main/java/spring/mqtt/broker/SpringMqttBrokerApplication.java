@@ -3,11 +3,13 @@ package spring.mqtt.broker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import spring.mqtt.config.netty.NettyConfig;
+import spring.mqtt.broker.config.NettyConfig;
 
 @SpringBootApplication
+@EnableAutoConfiguration
 public class SpringMqttBrokerApplication implements CommandLineRunner{
 
 	@Autowired

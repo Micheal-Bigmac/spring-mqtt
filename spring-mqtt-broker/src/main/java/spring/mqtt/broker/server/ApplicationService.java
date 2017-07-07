@@ -1,5 +1,13 @@
 package spring.mqtt.broker.server;
 
+import java.util.concurrent.ThreadFactory;
+
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -12,20 +20,12 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.internal.PlatformDependent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import spring.mqtt.broker.server.Handler.ChildChannelHandler;
-
-import javax.annotation.PostConstruct;
-import java.util.concurrent.ThreadFactory;
 
 /**
  * Created by Administrator on 2017/7/6.
  * 应用启动类
  */
-@Service
 public class ApplicationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationService.class);
 
