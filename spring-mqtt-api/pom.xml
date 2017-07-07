@@ -4,6 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>spring-mqtt-api</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>RELEASE</version>
+		</dependency>
+	</dependencies>
 
 	<parent>
 		<groupId>spring.mqtt.service</groupId>
