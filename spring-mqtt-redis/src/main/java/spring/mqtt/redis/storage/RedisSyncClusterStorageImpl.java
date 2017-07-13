@@ -8,6 +8,7 @@ import com.lambdaworks.redis.cluster.ClusterTopologyRefreshOptions;
 import com.lambdaworks.redis.cluster.RedisClusterClient;
 import com.lambdaworks.redis.cluster.api.StatefulRedisClusterConnection;
 import org.apache.commons.lang3.StringUtils;
+import spring.mqtt.api.Context;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +68,7 @@ public class RedisSyncClusterStorageImpl extends RedisSyncSingleStorageImpl {
     }
 
     @Override
-    public void init(AbstractConfiguration config) {
+    public void init(Context config) {
         if (!config.getString("redis.type").equals("cluster")) {
             throw new IllegalStateException("RedisSyncSingleStorageImpl class can only be used with cluster redis setup, but redis.type value is " + config.getString("redis.type"));
         }
