@@ -15,11 +15,6 @@
 			<artifactId>spring-mqtt-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>spring.mqtt.config</groupId>
-			<artifactId>spring-mqtt-config</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.nats/jnats -->
 		<dependency>
 			<groupId>io.nats</groupId>
