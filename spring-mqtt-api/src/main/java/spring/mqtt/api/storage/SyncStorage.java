@@ -1,7 +1,9 @@
 package spring.mqtt.api.storage;
 
-
+import io.netty.handler.codec.mqtt.MqttPublishVariableHeader;
+import io.netty.handler.codec.mqtt.MqttQoS;
 import spring.mqtt.api.message.Message;
+import spring.mqtt.api.message.MqttPublishPayload;
 
 import java.util.List;
 import java.util.Map;
@@ -211,7 +213,7 @@ public interface SyncStorage {
      * @param topicLevels List of topic levels
      * @return Subscriptions: Key - Client Id, Value - QoS
      */
-    Map<String, Object> getTopicSubscriptions(List<String> topicLevels);
+    Map<String, MqttQoS> getTopicSubscriptions(List<String> topicLevels);
 
     /**
      * Get the client's subscriptions
@@ -219,7 +221,7 @@ public interface SyncStorage {
      * @param clientId Client Id
      * @return Subscriptions: Key - Topic, Value - QoS
      */
-    Map<String, Object> getClientSubscriptions(String clientId);
+    Map<String, MqttQoS> getClientSubscriptions(String clientId);
 
     /**
      * Update topic subscription for the client
@@ -229,7 +231,7 @@ public interface SyncStorage {
      * @param topicLevels List of topic levels
      * @param qos         Subscription QoS
      */
-    void updateSubscription(String clientId, List<String> topicLevels, Object qos);
+    void updateSubscription(String clientId, List<String> topicLevels, MqttQoS qos);
 
     /***
      * Remove topic name subscription for the client
@@ -254,7 +256,7 @@ public interface SyncStorage {
      * @param topicLevels List of topic levels
      * @param map         RETURN VALUE! Subscriptions: Key - Client Id, Value - QoS
      */
-    void getMatchSubscriptions(List<String> topicLevels, Map<String, Object> map);
+    void getMatchSubscriptions(List<String> topicLevels, Map<String, MqttQoS> map);
 
     /**
      * Add retain message for the topic name
@@ -264,7 +266,7 @@ public interface SyncStorage {
      * @param msg         Retain Message
      * @return Retain Id
      */
-    int addRetainMessage(List<String> topicLevels, Message<Object, Object> msg);
+    int addRetainMessage(List<String> topicLevels, Message<MqttPublishVariableHeader, MqttPublishPayload> msg);
 
     /**
      * Remove all retain messages for the topic name
@@ -279,5 +281,5 @@ public interface SyncStorage {
      * @param topicLevels Topic Levels
      * @return List of Retain Message
      */
-    List<Message<Object, Object>> getMatchRetainMessages(List<String> topicLevels);
+    List<Message<MqttPublishVariableHeader, MqttPublishPayload>> getMatchRetainMessages(List<String> topicLevels);
 }
