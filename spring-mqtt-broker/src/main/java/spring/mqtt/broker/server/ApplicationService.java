@@ -91,7 +91,6 @@ public class ApplicationService {
                                 pipeline.addLast("ssl", sslContext.newHandler(sch.alloc()));
                             }
                             pipeline.addLast("idleStateHandler", new IdleStateHandler(0, 0, keepAlive));
-
                         }
                     });
             //绑定端口，同步等待成功

@@ -2,6 +2,7 @@ package spring.mqtt.api.storage;
 
 import io.netty.handler.codec.mqtt.MqttPublishVariableHeader;
 import io.netty.handler.codec.mqtt.MqttQoS;
+import spring.mqtt.api.Context;
 import spring.mqtt.api.message.Message;
 import spring.mqtt.api.message.MqttPublishPayload;
 
@@ -20,7 +21,7 @@ public interface SyncStorage {
      *
      * @param config Redis Configuration
      */
-    void init();
+    void init(Context context);
 
     /**
      * Destroy the storage

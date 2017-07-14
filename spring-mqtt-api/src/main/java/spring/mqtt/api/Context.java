@@ -144,6 +144,22 @@ public class Context {
         return defaultValue;
     }
 
+    public int getInt(String key, int defaultValue) {
+        String value = get(key);
+        if (value != null) {
+            return Integer.parseInt(value.trim());
+        }
+        return defaultValue;
+    }
+
+    public int getInt(String key) {
+        String value = get(key);
+        if (value != null) {
+            return Integer.parseInt(value.trim());
+        }
+        return -1 ;
+    }
+
 
     /**
      * Gets value mapped to key, returning null if unmapped.
