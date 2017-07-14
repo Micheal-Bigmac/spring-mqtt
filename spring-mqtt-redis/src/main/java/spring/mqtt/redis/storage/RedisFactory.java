@@ -17,6 +17,8 @@ public class RedisFactory {
     public static SyncStorage getRedisObjectByType(Context context) throws Exception{
 
         String redis_type = context.getString("redis.type");
+        logger.info("redis type is  "+ redis_type );
+        logger.info("redis Instance is  initializing ......");
         SyncStorage storage=null;
         if("single".equals(redis_type)){
            storage = new RedisSyncSingleStorageImpl();
@@ -30,6 +32,7 @@ public class RedisFactory {
         }else{
             throw new Exception("Redis Config is not Right");
         }
+        logger.info("redis Instance initalize finished");
         return storage;
     }
 }

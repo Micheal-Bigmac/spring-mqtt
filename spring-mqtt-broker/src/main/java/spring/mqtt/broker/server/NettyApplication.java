@@ -3,6 +3,7 @@ package spring.mqtt.broker.server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -23,7 +24,7 @@ import java.util.concurrent.ThreadFactory;
 /**
  * Created by Micheal-Bigmac on 2017/7/13.
  */
-public class NettyApplication implements NettyServer {
+public class NettyApplication extends NettyServer {
     private static final Logger LOGGER = LoggerFactory.getLogger(NettyApplication.class);
     private static final int Task_Group = Runtime.getRuntime().availableProcessors(); //CPU Core
 
@@ -53,8 +54,7 @@ public class NettyApplication implements NettyServer {
         handler= HandlerFactory.getInstance(context);
     }
 
-    @Override
-    public void connect() {
+    public synchronized void connect() {
         LOGGER.info("启动netty服务器");
         ThreadFactory bossFactory = new DefaultThreadFactory("netty.accept.boss");
         ThreadFactory workFactory = new DefaultThreadFactory("netty.accept.work");
@@ -75,15 +75,21 @@ public class NettyApplication implements NettyServer {
             bootstarp.childHandler(handler);
         }
         try {
-            bootstarp.bind(host,port).sync();
+            ChannelFuture future = bootstarp.bind(host, port).sync();
             LOGGER.info("服务启动成功");
+            future.channel().closeFuture().sync(); // 阻塞等待
         } catch (InterruptedException e) {
+            LOGGER.error("服务中断: "+e.getMessage());
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void stop() {
-
+    public synchronized void stop() {
+        if(!boosGroup.isShutdown()){
+            boosGroup.shutdownGracefully();
+        }
+        if(!workerGroup.isShutdown()){
+            workerGroup.shutdownGracefully();
+        }
     }
 }

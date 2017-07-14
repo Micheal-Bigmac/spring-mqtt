@@ -1,5 +1,7 @@
 package spring.mqtt.broker.handler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spring.mqtt.api.ChannelHandler;
 import spring.mqtt.api.Context;
 
@@ -11,10 +13,11 @@ import java.util.Locale;
  * Created by Micheal-Bigmac on 2017/7/14.
  */
 public class HandlerFactory {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(HandlerFactory.class);
 
     public static ChannelHandler getInstance(Context context)  {
         String protocolType = context.getString("protocol.type");
+        LOGGER.info("Current Channel Protocol is "+protocolType);
         if (protocolType == null || protocolType.isEmpty()) {
             protocolType = ProtoColType.OTHER.getProtoCol();
         }
@@ -23,6 +26,7 @@ public class HandlerFactory {
         try {
             ProtoColType type= ProtoColType.valueOf(protocolType.toUpperCase(Locale.ENGLISH));
             String className=type.getProtoCol();
+            LOGGER.info(" Class：+"+className+" initialize ChnnelHandler .......");
             handler = (Class<? extends ChannelHandler>) Class.forName(className);
             constructor = handler.getConstructor(Context.class);
         } catch (ClassNotFoundException e) {
@@ -38,6 +42,8 @@ public class HandlerFactory {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+        }finally {
+            LOGGER.info("initialize  ChannelHandler finished ");
         }
         return null;
     }

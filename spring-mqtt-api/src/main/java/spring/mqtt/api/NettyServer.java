@@ -3,9 +3,9 @@ package spring.mqtt.api;
 /**
  * Created by Micheal-Bigmac on 2017/7/13.
  */
-public interface NettyServer {
+public abstract class NettyServer {
 
-     void configure(Context context) ;
-     void connect();
-     void stop();
+     public abstract void configure(Context context) ;
+     synchronized void  connect(){};
+     synchronized void  stop(){};
 }

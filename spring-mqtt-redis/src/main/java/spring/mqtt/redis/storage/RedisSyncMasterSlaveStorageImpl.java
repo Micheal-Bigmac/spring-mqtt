@@ -8,6 +8,7 @@ import com.lambdaworks.redis.codec.Utf8StringCodec;
 import com.lambdaworks.redis.masterslave.MasterSlave;
 import com.lambdaworks.redis.masterslave.StatefulRedisMasterSlaveConnection;
 import org.apache.commons.lang3.StringUtils;
+import spring.mqtt.api.Context;
 
 import java.util.List;
 
@@ -64,8 +65,7 @@ public class RedisSyncMasterSlaveStorageImpl extends RedisSyncSingleStorageImpl 
     }
 
     @Override
-    public void init() {
-        AbstractConfiguration config;
+    public void init(Context config) {
         if (!config.getString("redis.type").equals("master_slave")) {
             throw new IllegalStateException("RedisSyncSingleStorageImpl class can only be used with master slave redis setup, but redis.type value is " + config.getString("redis.type"));
         }
