@@ -94,6 +94,7 @@ public class ApplicationService {
                         }
                     });
             //绑定端口，同步等待成功
+
             ChannelFuture f = b.bind(host,port).sync();
             LOGGER.info("服务启动成功");
             //等待服务端监听端口关闭
