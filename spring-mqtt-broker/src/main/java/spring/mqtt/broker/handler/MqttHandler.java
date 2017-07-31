@@ -1,7 +1,11 @@
 package spring.mqtt.broker.handler;
 
 import io.netty.channel.ChannelPipeline;
+import io.netty.channel.DefaultEventLoopGroup;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.mqtt.MqttDecoder;
+import io.netty.handler.codec.mqtt.MqttEncoder;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -32,10 +36,19 @@ public class MqttHandler extends ChannelHandler<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
 
+        EventLoopGroup bussinessGroup=new DefaultEventLoopGroup(10, r -> {
+            Thread thread=new Thread(r);
+            thread.setName("业务线程 Bussiness Thread ");
+            return thread;
+        });
+
         ChannelPipeline pipeline = socketChannel.pipeline();
         if (ssl) {
             pipeline.addLast("ssl", sslContext.newHandler(socketChannel.alloc()));
         }
         pipeline.addLast("idleStateHandler", new IdleStateHandler(0, 0, keepAlive));
+        pipeline.addLast("encoder", MqttEncoder.INSTANCE);
+        pipeline.addLast("decoder",new MqttDecoder());
+//        pipeline.addLast(bussinessGroup,"Bussiness",new );
     }
 }

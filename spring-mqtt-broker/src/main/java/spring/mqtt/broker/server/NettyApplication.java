@@ -38,7 +38,6 @@ public class NettyApplication extends NettyServer {
 
     private Context context;
 
-
     private String host;
     private int port;
 
@@ -124,7 +123,5 @@ public class NettyApplication extends NettyServer {
         if(!workerGroup.isShutdown()){
             workerGroup.shutdownGracefully();
         }
-
-
     }
 }
