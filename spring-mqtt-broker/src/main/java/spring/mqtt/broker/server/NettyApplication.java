@@ -83,6 +83,7 @@ public class NettyApplication extends NettyServer {
      *
      */
 
+//  TCP层面的接收和发送缓冲区大小设置  应ChannelOption的SO_SNDBUF和SO_RCVBUF，需要根据推送消息的大小，合理设置
     public synchronized void connect() {
         LOGGER.info("启动netty服务器");
         ThreadFactory bossFactory = new DefaultThreadFactory("netty.accept.boss");
