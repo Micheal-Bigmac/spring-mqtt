@@ -22,5 +22,10 @@
 			<artifactId>spring-mqtt-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>spring.mqtt.service</groupId>
+			<artifactId>spring-808</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
