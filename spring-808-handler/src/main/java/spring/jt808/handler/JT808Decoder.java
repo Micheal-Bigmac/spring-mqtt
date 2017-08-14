@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spring.jt808.codec.JT808Header;
 import spring.jt808.codec.JT808Message;
+import spring.jt808.common.JT808MessageType;
 import spring.jt808.util.BCD8421Operater;
 import spring.jt808.util.CommonUtils;
 
@@ -69,6 +70,7 @@ public class JT808Decoder extends ByteToMessageDecoder {
         if (checkSumForJT808 != checkSumPackage) {
             logger.error(" CheckSum is different ");
         } else {
+            Message.setChannel(ctx.channel());
             out.add(Message);
         }
 
@@ -77,7 +79,7 @@ public class JT808Decoder extends ByteToMessageDecoder {
 
     public JT808Header parseJT808Header(ByteBuf in) {
         JT808Header header = new JT808Header();
-        header.setMsgId(in.readShort());  //   0 2 字节 解析
+        header.setMsgId(JT808MessageType.valueOf(in.readShort()));  //   0 2 字节 解析
         short msgBodyPropsField = in.readShort();
         header.setMsgBodyPropsField(msgBodyPropsField);  // 2 4 字节解析
 

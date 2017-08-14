@@ -1,12 +1,15 @@
 package spring.jt808.codec;
 
+import spring.jt808.common.JT808MessageType;
+
 /**
  * Created by Micheal-Bigmac on 2017/7/31.
  */
 public class JT808Header {
 
         // 消息ID
-        protected int msgId;
+//        protected int msgId;
+        protected JT808MessageType msgId;
 
         /////// ========消息体属性
         // byte[2-3]
@@ -35,11 +38,11 @@ public class JT808Header {
         protected long subPackageSeq;
         //////// =====消息包封装项
 
-        public int getMsgId() {
+        public JT808MessageType getMsgId() {
             return msgId;
         }
 
-        public void setMsgId(int msgId) {
+        public void setMsgId(JT808MessageType msgId) {
             this.msgId = msgId;
         }
 

@@ -2,6 +2,7 @@ package spring.mqtt.broker.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spring.jt808.handler.JT808ChannelHandler;
 import spring.mqtt.api.ChannelHandler;
 import spring.mqtt.api.Context;
 
@@ -51,7 +52,7 @@ public class HandlerFactory {
     static enum ProtoColType {
         OTHER(null),
         DEFAULT("Default"),
-        PRO_808("808"),   // 有待完善交通部 808 协议
+        PRO_808(JT808ChannelHandler.class.getCanonicalName()) ,  // 有待完善交通部 808 协议
         PRO_809("809"),   // 有待完善 交通部809 协议
         PRO_MQTT(MqttHandler.class.getCanonicalName());
 
