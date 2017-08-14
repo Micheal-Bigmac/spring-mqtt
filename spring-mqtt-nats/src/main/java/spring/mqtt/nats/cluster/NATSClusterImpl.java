@@ -13,7 +13,6 @@ import spring.mqtt.api.cluster.ClusterListener;
 import spring.mqtt.api.cluster.ClusterListenerFactory;
 import spring.mqtt.api.message.Message;
 import spring.mqtt.api.util.JSONs;
-import spring.mqtt.nats.bean.NatsBean;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

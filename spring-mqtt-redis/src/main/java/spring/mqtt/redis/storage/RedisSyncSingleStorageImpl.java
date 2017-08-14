@@ -15,7 +15,6 @@ import spring.mqtt.api.message.MqttPublishPayload;
 import spring.mqtt.api.storage.ConnectionState;
 import spring.mqtt.api.storage.SyncStorage;
 import spring.mqtt.api.util.Topics;
-import spring.mqtt.redis.common.RedisKey;
 import spring.mqtt.redis.common.RedisLua;
 
 import java.util.ArrayList;
